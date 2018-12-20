@@ -1,0 +1,6 @@
+[package]
+name = "philosophes"
+version = "0.1.0"
+authors = ["potapovDim <potapovd3012@gmail.com>"]
+
+[dependencies]
