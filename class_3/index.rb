@@ -1,15 +1,11 @@
-threads = []
+require 'ffi'
 
-10.times do
-  threads << Thread.new do
-    count = 0
-    puts '1'
-    5_000_000.times do
-      count +=1
-    end
-  end
+module Hello
+  extend FFI::Library
+  ffi_lib 'target/release/libclass_3.dylib'
+  attach_function :process, [], :void
 end
 
-threads.each {|t| t.join}
+Hello.process
 
-puts "done"
+puts 'Done'

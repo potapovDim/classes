@@ -3,6 +3,8 @@ name = "class_3"
 version = "0.1.0"
 authors = ["potapovDim <potapovd3012@gmail.com>"]
 
+[dependencies]
+
 [lib]
-name = "embed"
-create-type  = ["dylib"]
+name ="class_3"
+crate-type=["dylib"]
