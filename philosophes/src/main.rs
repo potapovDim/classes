@@ -46,7 +46,7 @@ fn main() {
         Philosopher::new("Second philosopher", 1, 2),
         Philosopher::new("Third philosopher", 2, 3),
         Philosopher::new("Fourth philosopher", 3, 4),
-        Philosopher::new("Fifth philosopher", 4, 5),
+        Philosopher::new("Fifth philosopher", 0, 4),
     ];
     let handless: Vec<_> = philosophes
         .into_iter()
