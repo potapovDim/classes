@@ -2,6 +2,15 @@ use std::thread;
 use std::sync::{Arc, Mutex};
 use std::sync::mpsc;
 
+fn find_str_offset(haystack: &str, needle: char) -> Option<usize> {
+    for (offset, c) in haystack.char_indices() {
+        if c == needle {
+            return Some(offset);
+        }
+    }
+    return None;
+}
+
 fn example1() {
     let data = Arc::new(Mutex::new(vec![1u32, 2, 3]));
     for i in 0..3 {
@@ -22,7 +31,7 @@ fn example2() {
         let (data, tx) = (data.clone(), tx.clone());
         thread::spawn(move || {
             let mut data = data.lock().unwrap();
-            *data +=1;
+            *data += 1;
 
             tx.send(());
         });
@@ -32,4 +41,10 @@ fn example2() {
         rx.recv();
     }
 }
-fn main() {}
+fn main() {
+    let file_name = "test_file.xlsx";
+    match find_str_offset(file_name, '.') {
+        Some(i) => println!("{}", &file_name[i + 1..]),
+        None => println!("Not found"),
+    }
+}
