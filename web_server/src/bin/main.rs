@@ -13,7 +13,8 @@ fn main() {
     let pool = ThreadPool::new(4);
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        thread::spawn(|| handle_connection(stream));
+        pool.execute(|| handle_connection(stream));
+        // thread::spawn(|| handle_connection(stream));
         println!("Connection established!");
     }
 }
