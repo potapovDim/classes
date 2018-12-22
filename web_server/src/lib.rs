@@ -15,10 +15,22 @@ impl ThreadPool {
 
     ThreadPool { workers }
   }
-  pub fn execute<F>(&self, _f: F)
-  where
-    F: FnOnce() + Send + 'static,
-  {
+  // pub fn execute<F>(&self, _f: F)
+  // where
+  //   F: FnOnce() + Send + 'static,
+  // {
 
+  // }
+}
+
+struct Worker {
+  id: usize,
+  thread: thread::JoinHandle<()>,
+}
+
+impl Worker {
+  fn new(id: usize) -> Worker {
+    let thread = thread::spawn(|| {});
+    Worker { id, thread }
   }
 }
