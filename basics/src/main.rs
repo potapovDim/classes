@@ -1,52 +1,73 @@
 // 1 байт - 8 бит
 // 1 бит самая маленькая единица исчислении информации может быть или 0 или 1
 
+struct Point {
+    x: f32,
+    y: f32,
+}
+
+impl Point {
+    pub fn new(x: f32, y: f32) -> Point {
+        Point { x, y }
+    }
+}
+
+struct Rectangle {
+    p1: Point,
+    p2: Point,
+}
+
+impl Rectangle {
+    pub fn new(p1: Point, p2: Point) -> Rectangle {
+        Rectangle { p1, p2 }
+    }
+    pub fn rect_area(&self) -> f32 {
+        let Point { x: x_p1, y: y_p1 } = self.p1;
+        let Point { x: x_p2, y: y_p2 } = self.p2;
+        let mut area: f32 = 0.0;
+        // some point from x or y is ueqal to other one
+        //
+        // y
+        // ^
+        // 5
+        // |          * p1 {2.2x, 4.5y}
+        // |
+        // 4
+        // |
+        // |          * p1 {2.2x, 3.3y}
+        // 3
+        // |
+        // |
+        // 2
+        // |
+        // |
+        // 1
+        // |
+        // |____1___2___3___4___5___6___7___8___9____> x
+        if x_p1 == x_p2 {
+            area = if y_p1 > y_p2 {
+                // from highter point substract lower
+                y_p1 - y_p2 * y_p1 - y_p2
+            } else {
+                y_p2 - y_p1 * y_p2 - y_p1
+            };
+        } else if y_p1 == y_p2 {
+            area = if x_p1 > x_p2 {
+                // from highter point substract lower
+                x_p1 - x_p2 * x_p1 - x_p2
+            } else {
+                x_p2 - x_p1 * x_p2 - x_p1
+            };
+        } else {
+
+        }
+        area
+        // 32.32
+    }
+}
+
 fn main() {
-    // присвоение
-    {
-        let _x = 255; // связывание имен
-        let (_a, _b) = (2, 12); // шаблон
-        let _a_not_mut = 5;
-        // a_not_mut = 12; oшибка a_not_mut без слова mut не может быть переприсвоена
-        let mut _a_mut = 19; // оператор обьявления
-        _a_mut = 22;
-    }
-    // функции
-    {
-        fn _print_number(num: i32) {
-            println!("{}", num);
-        }
-        fn _ge_sum(first_num: i32, secont_num: i32) {
-            first_num + secont_num;
-        }
-
-        fn _return_before_end(i_num: i32) -> i32 {
-            if i_num < 10 {
-                return 12;
-            }
-            i_num + 12
-        }
-    }
-    // расходящиеся функци - функции которые не возвращают управление в основной поток
-    {
-        fn _pani_fn() -> ! {
-            panic!("This fuction throw an exeption as NODEJS");
-        }
-    }
-    // примитивы
-    {
-        // булевые значения  логические значения
-        let _b: bool = true;
-        let _a: bool = false;
-        // символы в одинарных кавычках ! представлены четырьмя байтами а не одним как в других языках програмирования
-        let _c: char = 'c';
-        // масивы
-        let mut _arr: [i32; 3] = [1, 2, 3];
-        let _arr_auto = [5; 12]; // [5,5,5,5,5,5,5,5,5,5,5,5]
-        let _arr_len = _arr.len(); // метод len длина масива
-
-        // срезы масивов являются ссылками на оригинальные елементы масив
-        let _slice_arr = &_arr[1..]; // делает срез начиная со второго елемента масива и до конца
-
-    }
+    let p1 = Point::new(2.2, 3.3);
+    let p2 = Point::new(2.2, 4.5);
+    let rectangle = Rectangle::new(p1, p2);
 }
