@@ -1,17 +1,34 @@
 // * for unnaming
 // & ref ref mut for destruction
 fn main() {
-  _reference_example()
+  // _reference_example()
+  _if_let_example();
 }
+// if le provide posibility of assertion by destruction
+fn _if_let_example() {
+  #[derive(Debug)]
+  enum IfLetExampe {
+    _Foo,
+    Bar,
+    _Baz,
+  }
+
+  let from_enum = IfLetExampe::Bar;
+  // it is not defininng, it is assertions
+  if let IfLetExampe::Bar = from_enum {
+    println!("From enum example worked as expected");
+  }
+}
+// references
 fn _reference_example() {
   let ref_num = &4;
   match ref_num {
-    &val => println!("by reference"),
+    &_val => println!("by reference"),
     _ => println!("TEST"),
   }
 
   match *ref_num {
-    val => println!("By unnaming"),
+    _val => println!("By unnaming"),
   }
 }
 
@@ -26,10 +43,12 @@ fn _example_1() {
 
   let boolean = true;
 
-  let a = match boolean {
+  let _a = match boolean {
     false => 0,
     true => 1,
   };
+
+  println!("a value should be binnary 0 or 1  = {}", _a);
 }
 
 fn _destruction_math_example() {
@@ -51,7 +70,7 @@ fn _basic_enum_example() {
   }
   let color = Colors::RGBA(3, 4, 5, 0.1);
   match color {
-    Colors::RGBA(x, y, z, a) => println!("RGBA WAS DEFINED"),
+    Colors::RGBA(_x, _y, z, _a) => println!("RGBA WAS DEFINED {}", z),
     _ => println!("Everything else "),
   }
 }
