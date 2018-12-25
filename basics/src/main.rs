@@ -23,5 +23,19 @@ fn _destruction_math_example() {
     _ => println!("Test"),
   }
 }
-fn main() {
+
+fn _basic_enum_example() {
+  #[derive(Debug)]
+  enum Colors {
+    Red,
+    Green,
+    Blue,
+    RGBA(i32, i32, i32, f32),
+  }
+  let color = Colors::RGBA(3, 4, 5, 0.1);
+  match color {
+    Colors::RGBA(x, y, z, a) => println!("RGBA WAS DEFINED"),
+    _ => println!("Everything else "),
+  }
 }
+fn main() {}
