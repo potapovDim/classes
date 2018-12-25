@@ -1,3 +1,20 @@
+// * for unnaming
+// & ref ref mut for destruction
+fn main() {
+  _reference_example()
+}
+fn _reference_example() {
+  let ref_num = &4;
+  match ref_num {
+    &val => println!("by reference"),
+    _ => println!("TEST"),
+  }
+
+  match *ref_num {
+    val => println!("By unnaming"),
+  }
+}
+
 fn _example_1() {
   let munber = 12;
   match munber {
@@ -38,4 +55,3 @@ fn _basic_enum_example() {
     _ => println!("Everything else "),
   }
 }
-fn main() {}
